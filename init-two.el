@@ -1,4 +1,8 @@
 (load-theme 'misterioso t)
+(setq inhibit-startup-screen t)                                                 
+(setq inhibit-splash-screen t)                                                  
+(tool-bar-mode -1)                                                              
+(menu-bar-mode -1)
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
@@ -13,7 +17,7 @@
  '(custom-safe-themes
    '("dd8223836a1a1576a8e9e7e1d19a894dce45e0f1a5498b5aecf0ccef3bec8b90" default))
  '(package-selected-packages
-   '(typescript-mode company auto-complete typescript-ts-mode tide markdown-mode js2-refactor js2-mode)))
+   '(multiple-cursors treemacs magit pug-mode typescript-mode company auto-complete typescript-ts-mode tide markdown-mode js2-refactor js2-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -81,3 +85,26 @@
      (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
 
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
+
+(use-package treemacs
+  :ensure t
+  :init
+  :config
+  :config
+  (add-hook 'emacs-startup-hook
+            (lambda ()
+              (treemacs)
+              (treemacs-display-current-project-exclusively))))
+
+(defun startup ()
+  (treemacs)
+  (other-window 1))
+
+(add-hook 'emacs-startup-hook #'startup)
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+(require 'multiple-cursors)
+(global-set-key (kbd "C-c C-d") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-c C-g") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-s") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-c C-a") 'mc/edit-lines)
+(global-display-line-numbers-mode 1)
