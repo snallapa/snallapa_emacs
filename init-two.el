@@ -3,7 +3,8 @@
 (setq inhibit-splash-screen t)                                                  
 (tool-bar-mode -1)                                                              
 (menu-bar-mode -1)
-(require 'package)
+(use-package package
+  :ensure t)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
 ;; and `package-pinned-packages`. Most users will not need or want to do this.
@@ -24,7 +25,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(require 'js2-mode)
+(use-package js2-mode
+  :ensure t)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
 ;; Better imenu
@@ -32,7 +34,8 @@
 
 (setq backup-directory-alist '(("." . "~/.emacs_backups")))
 
-(require 'prettier-js)
+(use-package prettier-js
+  :ensure t)
 (add-hook 'js2-mode-hook 'prettier-js-mode)
 
 (defun setup-tide-mode ()
@@ -65,8 +68,10 @@
          (tsx-ts-mode . tide-setup)
          (typescript-ts-mode . tide-hl-identifier-mode)
          (before-save . tide-format-before-save)))
-(require 'tree-sitter)
-(require 'tree-sitter-langs)
+(use-package tree-sitter
+  :ensure t)
+(use-package tree-sitter-langs
+  :ensure t)
 (setq treesit-language-source-alist
    '((bash "https://github.com/tree-sitter/tree-sitter-bash")
      (cmake "https://github.com/uyha/tree-sitter-cmake")
@@ -90,7 +95,6 @@
   :ensure t
   :init
   :config
-  :config
   (add-hook 'emacs-startup-hook
             (lambda ()
               (treemacs)
@@ -102,7 +106,8 @@
 
 (add-hook 'emacs-startup-hook #'startup)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
-(require 'multiple-cursors)
+(use-package multiple-cursors
+  :ensure t)
 (global-set-key (kbd "C-c C-d") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-c C-g") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-s") 'mc/mark-all-like-this)
