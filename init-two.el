@@ -113,3 +113,4 @@
 (global-set-key (kbd "C-c C-s") 'mc/mark-all-like-this)
 (global-set-key (kbd "C-c C-a") 'mc/edit-lines)
 (global-display-line-numbers-mode 1)
+(windmove-default-keybindings)
