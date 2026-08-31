@@ -1,3 +1,5 @@
+;;; init.el --- My Emacs config -*- lexical-binding: t; -*-
+
 (load-theme 'misterioso t)
 (setq inhibit-startup-screen t)                                                 
 (setq inhibit-splash-screen t)                                                  
